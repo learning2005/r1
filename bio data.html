@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation Form</title>
+</head>
+<body>
+  <form id="myForm" action="#" onsubmit="return validateForm()">
+    <label for="Email">Email</label>
+    <input type="text" name="Email" id="Email"><br><br>
+
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username"><br><br>
+
+    <label for="Password">Password</label>
+    <input type="text" name="Password" id="Password"><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let email = document.getElementById("Email").value.trim();
+      let username = document.getElementById("username").value.trim();
+      let password = document.getElementById("Password").value.trim();
+
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const usernameRegex = /^[a-zA-Z0-9_]{3,}$/; // At least 3 characters, letters/numbers/underscores
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      if (!emailRegex.test(email)) {
+        alert("Email is not correct");
+        return false;
+      }
+
+      if (!usernameRegex.test(username)) {
+        alert("Username must be at least 3 characters and can only include letters, numbers, and underscores");
+        return false;
+      }
+
+      if (!passwordRegex.test(password)) {
+        alert("Password must be at least 8 characters and include uppercase, lowercase, number, and special character");
+        return false;
+      }
+
+      alert("All inputs are valid!");
+      return true;
+    }
+  </script>
+</body>
+</html>
